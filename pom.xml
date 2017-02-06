@@ -59,6 +59,7 @@
   		<groupId>javax.servlet</groupId>
   		<artifactId>servlet-api</artifactId>
   		<version>LATEST</version>
+  		<scope>provided</scope>
   	</dependency>
   	<dependency>
   		<groupId>org.hibernate</groupId>
@@ -79,6 +80,7 @@
   		<groupId>javax.validation</groupId>
   		<artifactId>validation-api</artifactId>
   		<version>LATEST</version>
+  		<scope>provided</scope>
   	</dependency>
   </dependencies>
   <version>1</version>
