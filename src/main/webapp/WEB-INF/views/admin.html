@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <title>admin</title>
+    <link rel="icon" type="image/png" th:href="@{/img/icon.png}" />
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
   </head>
   <body>
@@ -10,7 +11,7 @@
     <section class="main">
     	<nav class="sidebar">
     		<ul>
-    			<li><img src="#" width="120" height="240"/></li>
+    			<li><img th:src="@{/img/logo.png}" width="120" height="240"/></li>
     			<li sec:authorize="hasPermission(#user, 'categoria')"><a th:href="@{/categoria}" th:utext="#{categoria}"></a></li>
     			<li sec:authorize="hasPermission(#user, 'produto')"><a th:href="@{/produto}" th:utext="#{produto}"></a></li>
     			<li sec:authorize="hasPermission(#user, 'pagina')"><a th:href="@{/pagina}" th:utext="#{pagina}"></a></li>
