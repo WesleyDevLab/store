@@ -13,8 +13,4 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
-	<mvc:resources location="/css/" mapping="/css/**"/>
-	<mvc:resources location="/img/" mapping="/img/**"/>
-	<mvc:resources location="/js/" mapping="/js/**"/>
 </web-app>
