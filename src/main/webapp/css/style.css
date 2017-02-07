@@ -77,7 +77,8 @@ body {
 .row {
 	margin-right: 5%;
 	padding-left: 16px;
-	display: table-row;
+	display: inline-flex;
+	align-items: flex-start;
 }
 
 .row:odd {
@@ -98,6 +99,7 @@ h1 {
 
 .column {
 	display: inline;
+	padding: 5px;
 }
 
 .row:odd .column:odd {
