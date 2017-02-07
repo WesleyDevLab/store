@@ -78,20 +78,25 @@ body {
 }
 
 .row:odd {
-	
+
 }
 
 .row:even{
-	
+
 }
 
 .container {
 	border-bottom: 2px solid;
+	overflow-x: visible;
+	height: 1.5em;
 }
 
 h1 {
-	border: 2px solid;
-	width: auto;
+	margin-top: 1.5em;
+	border: 1px solid #111;
+	position: absolute;
+	width: 100%;
+	z-index: 1;
 }
 
 .column {
@@ -122,7 +127,7 @@ h1 {
 }
 
 .column img {
-	
+
 }
 
 .column h3 {
@@ -208,4 +213,3 @@ h1 {
 .signin .signup button:active {
 	box-shadow: 2px 12px lightsteelblue;
 }
-
