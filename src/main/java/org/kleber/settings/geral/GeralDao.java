@@ -8,7 +8,6 @@ public class GeralDao extends PropertyDao<Geral> {
 
 	public GeralDao() {
 		super(Geral.class);
-		System.out.println("GeralDao --> "+Geral.class.getSimpleName());
 	}
 
 }
