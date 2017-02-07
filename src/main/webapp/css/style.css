@@ -41,34 +41,23 @@ body {
 	background-color: lightsteelblue;
 }
 
-.left {
-	float: left;
-}
-
-.right {
-	float: right
-}
-
 .main {
-	padding-top: 16px;
 	display: inline;
 }
 
 .menu {
 	background-color: silver;
-	color: black;
 	font-family: 'Ultra', serif;
 	font-size: 24px;
 }
 
 .menu ul {
 	list-style-type: none;
-	flex-basis: auto;
-	flex-direction: column;
 }
 
 .menu ul li {
 	text-align: center;
+	width: 120px;
 }
 
 .menu ul li a {
@@ -92,15 +81,12 @@ body {
 	
 }
 
-.container h1 {
-	border: 2px solid;
+.container {
+	
 }
 
-.container hr {
-	border: 0;
-	height: 1px;
-	background: #333;
-	background-image: linear-gradient(to right, #ccc, #333, #ccc);
+h1 {
+	border: 2px solid;
 }
 
 .column {
