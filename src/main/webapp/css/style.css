@@ -24,22 +24,21 @@ body {
 	flex-basis: auto;
 	flex-direction: row;
 	column-gap: 0px;
+	display: inline;
 }
 
 .navbar ul li {
 	text-align: center;
+	display: inline;
 }
 
-.main {
-	
+.navbar ul li a {
+	text-decoration: none;
+	color: white;
 }
 
-.menu {
-	margin-top: 0;
-	background-color: silver;
-	color: black;
-	font-family: 'Ultra', serif;
-	font-size: 24px;
+.navbar ul li a:hover {
+	background-color: lightsteelblue;
 }
 
 .left {
@@ -47,7 +46,19 @@ body {
 }
 
 .right {
-	float: right;
+	float: right
+}
+
+.main {
+	padding-top: 16px;
+	display: inline;
+}
+
+.menu {
+	background-color: silver;
+	color: black;
+	font-family: 'Ultra', serif;
+	font-size: 24px;
 }
 
 .menu ul {
@@ -60,12 +71,40 @@ body {
 	text-align: center;
 }
 
+.menu ul li a {
+	text-decoration: none;
+	color: white;
+}
+
+.menu ul li a:hover {
+	background-color: lightsteelblue;
+}
+
+.row {
+	display: inline;
+}
+
 .row:odd {
 	
 }
 
 .row:even{
 	
+}
+
+.container h1 {
+	border: 2px solid;
+}
+
+.container hr {
+	border: 0;
+	height: 1px;
+	background: #333;
+	background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+.column {
+	display: inline;
 }
 
 .row:odd .column:odd {
@@ -87,6 +126,7 @@ body {
 .column h2 {
 	font-family: 'Ultra', serif;
 	font-size: 16px;
+	width: 180px;
 }
 
 .column img {
@@ -96,6 +136,7 @@ body {
 .column h3 {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 12px;
+	width: 180px;
 }
 
 .sidebar {
@@ -120,6 +161,15 @@ body {
 
 .sidebar ul li {
 	text-align: center;
+}
+
+.sidebar ul li a {
+	text-decoration: none;
+	color: white;
+}
+
+.sidebar ul li a:hover {
+	background-color: lightsteelblue;
 }
 
 .signin .signup {
