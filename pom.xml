@@ -82,6 +82,16 @@
   		<version>LATEST</version>
   		<scope>provided</scope>
   	</dependency>
+  	<dependency>
+  		<groupId>org.apache.logging.log4j</groupId>
+  		<artifactId>log4j-api</artifactId>
+  		<version>LATEST</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.logging.log4j</groupId>
+  		<artifactId>log4j-core</artifactId>
+  		<version>LATEST</version>
+  	</dependency>
   </dependencies>
   <version>1</version>
 </project>
