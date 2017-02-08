@@ -25,7 +25,8 @@ public abstract class PropertyController<E extends Property> {
 	@RequestMapping(value = "/get")
 	@ResponseBody
 	public String get(Model model) throws ClassNotFoundException, IOException {
-		model.addAttribute("settings", serv.get());
+		model.addAttribute("setting", clazz);
+		model.addAttribute("settings", serv.settings());
 		return "admin";
 	}
 	
