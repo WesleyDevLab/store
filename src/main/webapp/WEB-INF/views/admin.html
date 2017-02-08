@@ -66,22 +66,128 @@
 			</div>
         </div>
         
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:if="${list}">
-			<div class="page-header">
-			  <h1 th:text="${classe}"></h1>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:if="${list}">		
+			<div class="row">
+			  <div class="col-md-4">
+				<div class="btn-group" role="group" aria-label="...">
+				  <button type="button" class="btn btn-default">30</button>
+				  <button type="button" class="btn btn-default">40</button>
+				  <button type="button" class="btn btn-default">50</button>
+				</div>
+			  </div>
+			  <div class="col-md-4"></div>
+			  <div class="col-md-4">
+				<input type="search" class="form-control" id="search"></input>
+			  </div>
 			</div>
+
+			<div class="table-responsive">
+			  <table class="table table-bordered table-striped">
+			    <thead>
+			    	<tr>
+			    		<td></td>
+			    		<td></td>
+			    		<td></td>
+			    	</tr>
+			    </thead>
+			    
+			    <tbody>
+			    	<tr>
+			    		<td></td>
+			    		<td></td>
+			    		<td></td>
+			    	</tr>
+			    </tbody>
+			    
+			    <tfoot>
+			    	<tr>
+			    		<td></td>
+			    		<td></td>
+			    		<td></td>
+			    	</tr>
+			    </tfoot>
+			  </table>
+			</div>
+			
+			<nav aria-label="Page navigation">
+			  <ul class="pagination">
+			    <li>
+			      <a href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    <li><a href="#">1</a></li>
+			    <li><a href="#">2</a></li>
+			    <li><a href="#">3</a></li>
+			    <li><a href="#">4</a></li>
+			    <li><a href="#">5</a></li>
+			    <li>
+			      <a href="#" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
         </div>
         
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:if="${command}">
-			<div class="page-header">
-			  <h1 th:utext="${classe}"></h1>
-			</div>
+        	<form role="form" class="form" id="form">
+        		<fieldset type="Datalist">
+        			<label></label>
+        			<datalist class="form-control"></datalist>
+        		</fieldset>
+        		
+        		<fieldset type="Input">
+        			<label></label>
+        			<input class="form-control"></input>
+        		</fieldset>
+        		
+        		<fieldset type="Select">
+        			<label></label>
+        			<select class="form-control"></select>
+        		</fieldset>
+        		
+        		<fieldset type="Textarea">
+        			<label></label>
+        			<textarea class="form-control"></textarea>
+        		</fieldset>
+        	</form>
         </div>
         
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:if="${setting}">
-			<div class="page-header">
-			  <h1 th:utext="#{settings}"></h1>
-			</div>
+			  <!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active">
+			    	<a href="#home" aria-controls="home" role="tab" data-toggle="tab"></a>
+		    	</li>
+			  </ul>
+			
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="home">
+		        	<form role="form" class="form" id="form">
+		        		<fieldset if="Datalist">
+		        			<label></label>
+		        			<datalist class="form-control"></datalist>
+		        		</fieldset>
+		        		
+		        		<fieldset if="Input">
+		        			<label></label>
+		        			<input class="form-control"></input>
+		        		</fieldset>
+		        		
+		        		<fieldset if="Select">
+		        			<label></label>
+		        			<select class="form-control"></select>
+		        		</fieldset>
+		        		
+		        		<fieldset if="Textarea">
+		        			<label></label>
+		        			<textarea class="form-control"></textarea>
+		        		</fieldset>
+		        	</form>
+			    </div>
+			  </div>
         </div>
       </div>
     </div>
