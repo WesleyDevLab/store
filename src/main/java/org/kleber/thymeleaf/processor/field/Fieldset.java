@@ -6,6 +6,8 @@ import org.thymeleaf.processor.ProcessorResult;
 import org.thymeleaf.processor.element.AbstractElementProcessor;
 
 public class Fieldset extends AbstractElementProcessor {
+	
+	private String type;
 
 	public Fieldset() {
 		super("fieldset");
@@ -19,6 +21,14 @@ public class Fieldset extends AbstractElementProcessor {
 	@Override
 	public int getPrecedence() {
 		return 0;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }
