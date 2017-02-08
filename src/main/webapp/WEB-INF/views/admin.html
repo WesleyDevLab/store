@@ -157,15 +157,15 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:if="${setting}">
 			  <!-- Nav tabs -->
 			  <ul class="nav nav-tabs" role="tablist">
-			    <li role="presentation" class="active">
-			    	<a href="#home" aria-controls="home" role="tab" data-toggle="tab"></a>
+			    <li role="presentation" th:each="item : ${settings}" class="${#strings.equals(setting.simpleName, item.simpleName)} ? 'active' : 'null'">
+			    	<a th:href="@{#__${item.simpleName}__}" th:attr="aria-controls=${item.simpleName}" role="tab" data-toggle="tab"></a>
 		    	</li>
 			  </ul>
 			
 			  <!-- Tab panes -->
 			  <div class="tab-content">
-			    <div role="tabpanel" class="tab-pane active" id="home">
-		        	<form role="form" class="form" id="form">
+			    <div role="tabpanel" th:each="item : ${settings}" class="${#strings.equals(setting.simpleName, item.simpleName)} ? 'tab-pane active' : 'tab-pane'" th:id="${item.simpleName}">
+		        	<form role="form" class="form" id="form" command="${item}">
 		        		<fieldset if="Datalist">
 		        			<label></label>
 		        			<datalist class="form-control"></datalist>
