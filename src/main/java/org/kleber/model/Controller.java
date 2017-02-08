@@ -30,7 +30,7 @@ public abstract class Controller<E> {
 	@PreAuthorize("hasPermission(#user, 'insert_'+#this.this.name)")
 	public String insert(org.springframework.ui.Model model) throws InstantiationException, IllegalAccessException {
 		model.addAttribute("command", serv.newObject());
-		return "form/insert_"+getName();
+		return "admin";
 	}
 	
 	@RequestMapping(value = "/insert", method=RequestMethod.POST)
@@ -46,7 +46,7 @@ public abstract class Controller<E> {
 	@PreAuthorize("hasPermission(#user, 'update_'+#this.this.name)")
 	public String update(org.springframework.ui.Model model, @PathVariable("id") String id) {
 		model.addAttribute("command", serv.getObject(id));
-		return "form/update_"+getName();
+		return "admin";
 	}
 	
 	@RequestMapping(value = "/update", method=RequestMethod.POST)
@@ -62,7 +62,7 @@ public abstract class Controller<E> {
 	@PreAuthorize("hasPermission(#user, 'delete_'+#this.this.name)")
 	public String delete(org.springframework.ui.Model model, @PathVariable("id") String id) {
 		model.addAttribute("command", serv.getObject(id));
-		return "form/delete_"+getName();
+		return "admin";
 	}
 	
 	@RequestMapping(value = "/delete", method=RequestMethod.POST)
@@ -75,8 +75,9 @@ public abstract class Controller<E> {
 	//index page
 	
 	@RequestMapping("/")
-	public String index() {
-		return "list/"+getName()+".html";
+	public String index(org.springframework.ui.Model model) {
+		model.addAttribute("list", serv.select(null, null));
+		return "admin";
 	}
 	
 	@RequestMapping("/list.json")
