@@ -3,6 +3,7 @@ package org.kleber.model;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 public abstract class Service<E> {
 	@Autowired
@@ -14,18 +15,22 @@ public abstract class Service<E> {
 		this.clazz = clazz;
 	}
 	
+	@Transactional
 	public void insert(E object) {
 		dao.insert(object);
 	}
 	
+	@Transactional
 	public void update(E object) {
 		dao.update(object);
 	}
 	
+	@Transactional
 	public void delete(E object) {
 		dao.delete(object);
 	}
 	
+	@Transactional
 	public List<E> select(String orderby, String groupby) {
 		return dao.select(orderby, groupby);
 	}
@@ -34,11 +39,8 @@ public abstract class Service<E> {
 		return clazz.newInstance();
 	}
 	
+	@Transactional
 	public E getObject(String id) {
 		return dao.select(id);
-	}
-	
-	public String getName() {
-		return clazz.getSimpleName().toLowerCase();
 	}
 }
