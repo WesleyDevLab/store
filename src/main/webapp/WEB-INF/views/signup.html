@@ -4,28 +4,48 @@
     <meta charset="utf-8"/>
     <title>signup</title>
     <link rel="icon" type="image/png" th:href="@{/img/icon.png}" />
-    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+	
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+	
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
+	
+    <link rel="stylesheet" th:href="@{/css/style-signin.css}"/>
   </head>
   <body>
-    <!-- page content -->
-    <form class="signup" method="post" th:action="@{/cadastro}">
-    	<label th:utext="#{login}"></label>
-    	<input type="text" name="login" th:placeholder="#{login}"/>
-    	
-    	<label th:utext="#{senha}"></label>
-    	<input type="password" name="senha" th:placeholder="#{senha}"/>
-    	
-    	<label th:utext="#{nome}"></label>
-    	<input type="text" name="nome" th:placeholder="#{nome}"/>
-    	
-    	<label th:utext="#{sobrenome}"></label>
-    	<input type="text" name="sobrenome" th:placeholder="#{sobrenome}"/>
-    	
-    	<label th:utext="#{email}"></label>
-    	<input type="text" name="email" th:placeholder="#{email}"/>
-    	
-    	<button type="submit" th:utext="#{cadastro}"></button>
-    </form>
-    <script th:src="@{/js/script.js}"></script>
+    <div class="container">
+
+      <form class="form-signin" method="post" action="#">
+        <h2 class="form-signin-heading" th:utext="#{please}"></h2>
+        
+        <label for="inputUsername" class="sr-only" th:utext="#{login}"></label>
+        <input type="text" id="inputUsername" class="form-control" name="login" th:placeholder="#{login}" required="required" autofocus="autofocus"/>
+        
+        <label for="inputPassword" class="sr-only" th:utext="#{senha}"></label>
+        <input type="password" id="inputPassword" class="form-control" name="senha" th:placeholder="#{senha}" required="required"/>
+        
+        <label for="inputPNome" class="sr-only" th:utext="#{pnome}"></label>
+        <input type="text" id="inputPNome" class="form-control" name="nome" th:placeholder="#{pnome}" required="required"/>
+        
+        <label for="inputUNome" class="sr-only" th:utext="#{unome}"></label>
+        <input type="text" id="inputUNome" class="form-control" name="sobrenome" th:placeholder="#{unome}" required="required"/>
+        
+        <label for="inputEmail" class="sr-only" th:utext="#{email}"></label>
+        <input type="text" id="inputEmail" class="form-control" name="email" th:placeholder="#{email}" required="required"/>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit" th:utext="#{dosignup}"></button>
+      </form>
+
+    </div> <!-- /container -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>
 </html>
