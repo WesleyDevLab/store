@@ -1,4 +1,4 @@
-package org.kleber.thymeleaf.processor.field;
+package org.kleber.thymeleaf.processor.util;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -7,12 +7,12 @@ import org.thymeleaf.Arguments;
 import org.thymeleaf.dom.Element;
 import org.thymeleaf.processor.element.AbstractConditionalVisibilityElementProcessor;
 
-public class Fieldset extends AbstractConditionalVisibilityElementProcessor {
+public class If extends AbstractConditionalVisibilityElementProcessor {
 
 	private String type;
 	
-	public Fieldset() {
-		super("field-set");
+	public If() {
+		super("if");
 	}
 
 	public String getType() {
