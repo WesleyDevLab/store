@@ -21,7 +21,11 @@ public class Form extends AbstractIterationElementProcessor {
 	@Override
 	public IterationSpec getIterationSpec(Arguments arguments, Element element) {
 		Object command = arguments.getContext().getVariables().get("command");
-		return new AbstractIterationElementProcessor.IterationSpec("field", "status", command.getClass().getDeclaredFields());
+		Object setting = arguments.getContext().getVariables().get("setting");
+		if(command != null)
+			return new AbstractIterationElementProcessor.IterationSpec("field", "status", command.getClass().getDeclaredFields());
+		else
+			return new AbstractIterationElementProcessor.IterationSpec("field", "status", setting.getClass().getDeclaredFields());
 	}
 
 	@Override
