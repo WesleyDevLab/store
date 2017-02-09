@@ -19,6 +19,8 @@ public class Input extends AbstractElementProcessor {
 	@Override
 	public ProcessorResult processElement(Arguments arguments, Element element) {
 		Object command = arguments.getContext().getVariables().get("command");
+		if(command == null)
+			command = arguments.getContext().getVariables().get("setting");
 		Field field = (Field) arguments.getLocalVariable("field");
 		
 		if(field != null && field.getAnnotation(org.kleber.annotations.field.Input.class) != null) {
