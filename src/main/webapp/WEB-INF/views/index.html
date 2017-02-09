@@ -32,9 +32,11 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
           	<li sec:authorize="isAnonymous()"><a th:href="@{/signin}" th:utext="#{signin}"></a></li>
+          	
           	<li sec:authorize="isAnonymous()"><a th:href="@{/signup}" th:utext="#{signup}"></a></li>
           	
             <li sec:authorize="isAuthenticated()"><a th:href="@{/cart}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
+            
             <li sec:authorize="isAuthenticated()"><a th:href="@{/admin}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
             
             <li class="dropdown" sec:authorize="isAuthenticated()">
