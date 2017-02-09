@@ -1,5 +1,6 @@
 package org.kleber.thymeleaf.processor.field;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Map;
 
@@ -24,6 +25,7 @@ public class Input extends AbstractElementProcessor {
 			Element input = new Element("input");
 			for( Map.Entry<String, Attribute> entry : element.getAttributeMap().entrySet() )
 				input.setAttribute(entry.getKey(), entry.getValue().getValue());
+			input.setAttribute("type", type(field));
 			input.setAttribute("name", field.getName());
 			input.setAttribute("value", value(command).toString());
 			input.setProcessable(false);
@@ -41,6 +43,14 @@ public class Input extends AbstractElementProcessor {
 	
 	private Object value(Object command) {
 		return null;
+	}
+	
+	private String type(Field field) {
+		String annotation_name = null;
+		for(Annotation annotation : field.getDeclaredAnnotations())
+			if(annotation.annotationType().getPackage().getName().equals("org.kleber.annotations.input_type"))
+				annotation_name = annotation.annotationType().getSimpleName().toLowerCase();
+		return annotation_name;
 	}
 
 }
