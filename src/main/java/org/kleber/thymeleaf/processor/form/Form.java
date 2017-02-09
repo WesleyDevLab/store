@@ -1,49 +1,45 @@
 package org.kleber.thymeleaf.processor.form;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 
 import org.thymeleaf.Arguments;
 import org.thymeleaf.dom.Attribute;
 import org.thymeleaf.dom.Element;
-import org.thymeleaf.processor.element.AbstractIterationElementProcessor;
+import org.thymeleaf.dom.Node;
+import org.thymeleaf.processor.ProcessorResult;
+import org.thymeleaf.processor.element.AbstractElementProcessor;
 
-public class Form extends AbstractIterationElementProcessor {
+public class Form extends AbstractElementProcessor {
 
 	public Form() {
 		super("form");
 	}
 
 	@Override
-	public String getIteratedElementName(Arguments arguments, Element element) {
-		return "form";
-	}
-
-	@Override
-	public IterationSpec getIterationSpec(Arguments arguments, Element element) {
+	public ProcessorResult processElement(Arguments arguments, Element element) {
 		Object command = arguments.getContext().getVariables().get("command");
-		Object setting = arguments.getContext().getVariables().get("setting");
-		if(command != null)
-			return new AbstractIterationElementProcessor.IterationSpec("field", "status", command.getClass().getDeclaredFields());
-		else
-			return new AbstractIterationElementProcessor.IterationSpec("field", "status", setting.getClass().getDeclaredFields());
-	}
-
-	@Override
-	public void processClonedHostIterationElement(Arguments arguments, Element element) {
-		Element form = new Element("form");
-		for( Map.Entry<String, Attribute> entry : element.getAttributeMap().entrySet() )
-			form.setAttribute(entry.getKey(), entry.getValue().getValue());
-		form.setAttribute("method", "post");
-		form.setAttribute("action", null);
-		form.setProcessable(false);
-		element.getParent().insertBefore(element, form);
-		element.getParent().removeChild(element);
+		if(command == null)
+			command = arguments.getContext().getVariables().get("setting");
 		
-	}
-
-	@Override
-	public boolean removeHostIterationElement(Arguments arguments, Element element) {
-		return false;
+		if(command != null) {
+			Element form = new Element("form");
+			for( Map.Entry<String, Attribute> entry : element.getAttributeMap().entrySet() )
+				form.setAttribute(entry.getKey(), entry.getValue().getValue());
+			form.setAttribute("method", "post");
+			form.setAttribute("action", null);
+			for(Node child : element.getChildren()) {
+				for(Field field : command.getClass().getDeclaredFields()) {
+					child.setNodeProperty("field", field);
+					form.addChild(child.cloneNode(form, true));
+				}
+			}
+			form.setProcessable(false);
+			element.getParent().insertBefore(element, form);
+			element.getParent().removeChild(element);
+		}
+		
+		return ProcessorResult.OK;
 	}
 
 	@Override
