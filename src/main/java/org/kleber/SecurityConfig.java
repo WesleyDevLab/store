@@ -35,8 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.csrf()
 				.disable()
 			.authorizeRequests()
-				.antMatchers("/", "/css/**", "/js/**", "/img/**", "/c/**", "/p/**", "/page/**").permitAll()
 				.anyRequest().authenticated()
+				.antMatchers("/", "/css/**", "/js/**", "/img/**", "/c/**", "/p/**", "/page/**").permitAll()
 				.and()
 			.formLogin()
 				.loginPage("/signin")
@@ -105,4 +105,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
 }
