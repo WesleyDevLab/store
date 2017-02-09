@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 public abstract class PropertyController<E extends Property> {
 	
@@ -23,10 +22,9 @@ public abstract class PropertyController<E extends Property> {
 	}
 	
 	@RequestMapping(value = "/get")
-	@ResponseBody
 	public String get(Model model) throws ClassNotFoundException, IOException {
 		model.addAttribute("setting", clazz);
-		model.addAttribute("settings", serv.settings());
+		model.addAttribute("settings", null);
 		return "admin";
 	}
 	
