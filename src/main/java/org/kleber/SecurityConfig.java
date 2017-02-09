@@ -48,7 +48,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutUrl("/logout")
 				.deleteCookies("remember-me")
 				.and()
-			.rememberMe();
+			.rememberMe()
+				.key("remember-me")
+				.useSecureCookie(true)
+				.userDetailsService(userDetailsService());
 	}
 	
 	public void configure(WebSecurity web) {
