@@ -1,10 +1,17 @@
 package org.kleber;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.kleber.model.categoria.CategoriaService;
 import org.kleber.model.pagina.PaginaService;
 import org.kleber.model.produto.ProdutoService;
 import org.kleber.model.usuario.UsuarioService;
+import org.kleber.settings.Property;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -80,8 +87,27 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/settings")
-	public String settings(Model model) {
-		model.addAttribute("settings", null);
+	public String settings(Model model) throws InstantiationException, IllegalAccessException {
+		model.addAttribute("settings", settings());
+		model.addAttribute("setting", settings().get(0).newInstance());
 		return "admin";
+	}
+	
+	private List<Class<?>> settings() {
+		List<Class<?>> list = new ArrayList<Class<?>>();
+		
+		ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
+		scanner.addIncludeFilter(new AnnotationTypeFilter(org.kleber.annotation.class_type.Property.class));
+		for (BeanDefinition bd : scanner.findCandidateComponents("org.kleber.settings")) {
+			Class<?> clazz;
+			try {
+				clazz = Class.forName(bd.getBeanClassName());
+			} catch (ClassNotFoundException e) {
+				clazz = null;
+			}
+			list.add(clazz);
+		}
+		
+		return list;
 	}
 }
