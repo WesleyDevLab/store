@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @ComponentScan
 public class HibernateConfig {
-	
+
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -37,25 +37,24 @@ public class HibernateConfig {
 		dataSource.setPassword("123");
 		return dataSource;
 	}
-	
+
 	@Bean
 	public Properties hibernateProperties() {
 		return new Properties() {
 			private static final long serialVersionUID = 1L;
 			{
 				setProperty("hibernate.hbm2ddl.auto", "create-drop");
-				setProperty("hibernate.hbm2ddl.import_files", "/WEB-INF/import.sql");
 				setProperty("hibernate.show_sql", "true");
 				setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 			}
 		};
 	}
-	
+
 	@Bean
 	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
-	
+
 	@Bean
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager txManager = new HibernateTransactionManager();
