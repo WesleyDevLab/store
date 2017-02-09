@@ -50,6 +50,7 @@
           </ul>
           <ul class="nav nav-sidebar">
             <li><a th:href="@{/geral/get}" th:utext="#{geral}"></a></li>
+            <li><a th:href="@{/paypal/get}" th:utext="#{paypal}"></a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a th:href="@{/usuario}" th:utext="#{usuario}"></a></li>
@@ -153,15 +154,15 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:if="${settings}">
 			  <!-- Nav tabs -->
 			  <ul class="nav nav-tabs" role="tablist">
-			    <li role="presentation" th:each="item : ${settings}" class="${#strings.equals(setting.simpleName, item.simpleName)} ? 'active' : 'null'">
-			    	<a th:href="@{#__${item.simpleName}__}" th:attr="aria-controls=${item.simpleName}" role="tab" data-toggle="tab"></a>
+			    <li role="presentation" th:each="item : ${settings}" th:class="${#strings.equals(setting['class'].simpleName, item.simpleName)} ? 'active' : 'null'">
+			    	<a th:href="@{#__${item.simpleName}__}" th:attr="aria-controls=${item.simpleName}" role="tab" data-toggle="tab" th:utext="#{__${item.simpleName}__}"></a>
 		    	</li>
 			  </ul>
 			
 			  <!-- Tab panes -->
 			  <div class="tab-content">
-			    <div role="tabpanel" th:each="item : ${settings}" class="${#strings.equals(setting.simpleName, item.simpleName)} ? 'tab-pane active' : 'tab-pane'" th:id="${item.simpleName}">
-		        	<form role="form" class="form" id="form" command="${item}">
+			    <div role="tabpanel" th:each="item : ${settings}" th:class="${#strings.equals(setting['class'].simpleName, item.simpleName)} ? 'tab-pane active' : 'tab-pane'" th:id="${item.simpleName}">
+		        	<form role="form" class="form" id="form">
 		        		<fieldset if="Datalist">
 		        			<label></label>
 		        			<datalist class="form-control"></datalist>
