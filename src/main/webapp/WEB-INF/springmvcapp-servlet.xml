@@ -25,6 +25,14 @@
 	<bean id="templateEngine"
 		class="org.thymeleaf.spring4.SpringTemplateEngine">
 		<property name="templateResolver" ref="templateResolver"></property>
+		<property name="additionalDialects">
+			<set>
+				<bean class="org.kleber.thymeleaf.dialect.Field"/>
+				<bean class="org.kleber.thymeleaf.dialect.Form"/>
+				<bean class="org.kleber.thymeleaf.dialect.Util"/>
+				<bean class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect"/>
+			</set>
+		</property>
 	</bean>
 
 	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
