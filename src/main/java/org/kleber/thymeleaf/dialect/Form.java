@@ -9,7 +9,7 @@ import org.thymeleaf.processor.IProcessor;
 public class Form extends AbstractDialect {
 
 	public String getPrefix() {
-		return "form";
+		return null;
 	}
 	
 	public Set<IProcessor> getProcessors() {
