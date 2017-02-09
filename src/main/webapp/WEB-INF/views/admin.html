@@ -129,24 +129,26 @@
         
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:if="${command}">
         	<form role="form" class="form" id="form">
-        		<fieldset type="Datalist">
-        			<label></label>
-        			<datalist class="form-control"></datalist>
-        		</fieldset>
-        		
-        		<fieldset type="Input">
-        			<label></label>
-        			<input class="form-control"></input>
-        		</fieldset>
-        		
-        		<fieldset type="Select">
-        			<label></label>
-        			<select class="form-control"></select>
-        		</fieldset>
-        		
-        		<fieldset type="Textarea">
-        			<label></label>
-        			<textarea class="form-control"></textarea>
+        		<fieldset>
+	        		<if type="Datalist">
+	        			<label></label>
+	        			<datalist class="form-control"></datalist>
+	        		</if>
+	        		
+	        		<if type="Input">
+	        			<label></label>
+	        			<input class="form-control"></input>
+	        		</if>
+	        		
+	        		<if type="Select">
+	        			<label></label>
+	        			<select class="form-control"></select>
+	        		</if>
+	        		
+	        		<if type="Textarea">
+	        			<label></label>
+	        			<textarea class="form-control"></textarea>
+	        		</if>
         		</fieldset>
         	</form>
         </div>
@@ -163,24 +165,26 @@
 			  <div class="tab-content">
 			    <div role="tabpanel" th:each="item : ${settings}" th:class="${#strings.equals(setting['class'].simpleName, item.simpleName)} ? 'tab-pane active' : 'tab-pane'" th:id="${item.simpleName}">
 		        	<form role="form" class="form" id="form">
-		        		<fieldset if="Datalist">
-		        			<label></label>
-		        			<datalist class="form-control"></datalist>
-		        		</fieldset>
-		        		
-		        		<fieldset if="Input">
-		        			<label></label>
-		        			<input class="form-control"></input>
-		        		</fieldset>
-		        		
-		        		<fieldset if="Select">
-		        			<label></label>
-		        			<select class="form-control"></select>
-		        		</fieldset>
-		        		
-		        		<fieldset if="Textarea">
-		        			<label></label>
-		        			<textarea class="form-control"></textarea>
+		        		<fieldset>
+			        		<if type="Datalist">
+			        			<label></label>
+			        			<datalist class="form-control"></datalist>
+			        		</if>
+			        		
+			        		<if type="Input">
+			        			<label></label>
+			        			<input class="form-control"></input>
+			        		</if>
+			        		
+			        		<if type="Select">
+			        			<label></label>
+			        			<select class="form-control"></select>
+			        		</if>
+			        		
+			        		<if type="Textarea">
+			        			<label></label>
+			        			<textarea class="form-control"></textarea>
+			        		</if>
 		        		</fieldset>
 		        	</form>
 			    </div>
