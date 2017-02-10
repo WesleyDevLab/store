@@ -27,10 +27,9 @@ public class If extends AbstractConditionalVisibilityElementProcessor {
 	public boolean isVisible(Arguments arguments, Element element) {
 		type = element.getAttributeValue("type");
 		Field field = (Field) arguments.getLocalVariable("field");
-		for(Annotation annotation : field.getAnnotations()) {
-			if(annotation.annotationType().getSimpleName().equals(type))
-				return true;
-		}
+		if(field != null)
+			for(Annotation annotation : field.getAnnotations())
+				if(annotation.annotationType().getSimpleName().equals(type)) return true;
 		return false;
 	}
 
