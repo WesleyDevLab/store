@@ -7,7 +7,6 @@ import org.kleber.model.categoria.CategoriaService;
 import org.kleber.model.pagina.PaginaService;
 import org.kleber.model.produto.ProdutoService;
 import org.kleber.model.usuario.UsuarioService;
-import org.kleber.settings.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
@@ -87,6 +86,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/settings")
+	@PreAuthorize("hasPermission(#user, 'settings')")
 	public String settings(Model model) throws InstantiationException, IllegalAccessException {
 		model.addAttribute("settings", settings());
 		model.addAttribute("setting", settings().get(0).newInstance());
