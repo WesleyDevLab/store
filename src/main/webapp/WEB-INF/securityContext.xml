@@ -13,15 +13,18 @@
 	<security:http pattern="/img/**" security="none"></security:http>
 	
 	<security:http pattern="/js/**" security="none"></security:http>
-	
-	<security:http>
+
+	<security:http use-expressions="true">
 		<security:form-login login-page="/signin"
 			login-processing-url="/login" username-parameter="login"
-			password-parameter="senha"/>
-		<security:logout logout-url="/logout" delete-cookies='JSESSIONID' />
-		<security:remember-me key="remember-me" />
+			password-parameter="senha" />
+		<security:logout logout-url="/logout"
+			delete-cookies='JSESSIONID' logout-success-url="/" />
+		<security:remember-me key="remember-me"
+			remember-me-parameter="remember-me" remember-me-cookie="remember-me" /><security:csrf
+			disabled="true" />
 	</security:http>
-	
+
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="userDetailsService">
 			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
