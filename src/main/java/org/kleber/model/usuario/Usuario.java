@@ -2,6 +2,7 @@ package org.kleber.model.usuario;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -60,6 +61,15 @@ public class Usuario extends Model implements UserDetails {
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Credencial> credenciais;
+	
+	@Column
+	private Date expirationDate;
+	
+	@Column
+	private Boolean locked;
+	
+	@Column
+	private Boolean enabled;
 
 	@Override
 	public Integer getId() {
@@ -115,14 +125,6 @@ public class Usuario extends Model implements UserDetails {
 		this.email = email;
 	}
 
-	public List<Credencial> getCredenciais() {
-		return credenciais;
-	}
-
-	public void setCredenciais(List<Credencial> credenciais) {
-		this.credenciais = credenciais;
-	}
-
 	public Cart getCesta() {
 		return cesta;
 	}
@@ -146,9 +148,40 @@ public class Usuario extends Model implements UserDetails {
 	public void setPedidos(List<Orders> pedidos) {
 		this.pedidos = pedidos;
 	}
+	
+	public List<Credencial> getCredenciais() {
+		return credenciais;
+	}
+
+	public void setCredenciais(List<Credencial> credenciais) {
+		this.credenciais = credenciais;
+	}
+	
+	public Date getExpirationDate() {
+		return expirationDate;
+	}
+
+	public void setExpirationDate(Date expirationDate) {
+		this.expirationDate = expirationDate;
+	}
+
+	public Boolean getLocked() {
+		return locked;
+	}
+
+	public void setLocked(Boolean locked) {
+		this.locked = locked;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
 
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		List<Autorizacao> authorities = new ArrayList<Autorizacao>();
 		for(Credencial c : credenciais)
 			authorities.addAll(c.getAutorizacoes());
@@ -156,33 +189,38 @@ public class Usuario extends Model implements UserDetails {
 	}
 
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return senha;
 	}
 
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return login;
 	}
 
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
+		Date hoje = new Date();
+		if(this.expirationDate == null)
+			return true;
+		else
+			if(hoje.before(expirationDate))
+				return true;
+			else
+				return false;
 	}
 
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
+		return this.getLocked();
 	}
 
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
+		Date hoje = new Date();
+		for(Credencial c : this.getCredenciais())
+			if(hoje.after(c.getExpirationDate()))
+				return false;
 		return true;
 	}
 
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
+		return this.getEnabled();
 	}
 
 }
