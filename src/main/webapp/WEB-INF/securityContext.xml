@@ -13,6 +13,9 @@
 	<security:http pattern="/img/**" security="none"></security:http>
 	
 	<security:http pattern="/js/**" security="none"></security:http>
+	<security:http pattern="/c/**" security="none"></security:http>
+	<security:http pattern="/p/**" security="none"></security:http>
+	<security:http pattern="/page/**" security="none"></security:http>
 
 	<security:http use-expressions="true">
 		<security:form-login login-page="/signin"
