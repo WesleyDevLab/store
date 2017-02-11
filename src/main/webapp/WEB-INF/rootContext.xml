@@ -11,7 +11,7 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url" value="jdbc:postgresql:mydata"/>
-        <property name="username" value="kleber"/>
+        <property name="username" value="klebermo"/>
         <property name="password" value="123"/>
 	</bean>
 	
