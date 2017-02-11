@@ -15,10 +15,11 @@
 	<security:http pattern="/js/**" security="none"></security:http>
 	
 	<security:http>
-		<security:form-login login-page="/signin" login-processing-url="/login" />
+		<security:form-login login-page="/signin"
+			login-processing-url="/login" username-parameter="login"
+			password-parameter="senha"/>
 		<security:logout logout-url="/logout" delete-cookies='JSESSIONID' />
 		<security:remember-me key="remember-me" />
-		<security:intercept-url pattern="/admin" access="hasRole('admin')" />
 	</security:http>
 	
 	<security:authentication-manager>
@@ -29,7 +30,10 @@
 	
 	<bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
 		<property name="dataSource" ref="dataSource"></property>
+		<property name="usersByUsernameQuery" value="select login, senha, enabled from usuario where login = ?"></property>
+		<property name="authoritiesByUsernameQuery" value="SELECT t1.username, t2.authority FROM (SELECT u.login as username, c.nome as credencial FROM usuario u, usuario_credencial uc, credencial c WHERE u.id = uc.usuario_id and c.id = uc.credenciais_id) as t1 INNER JOIN (SELECT c.nome as credencial, a.nome as authority FROM credencial c, credencial_autorizacao ca, autorizacao a WHERE c.id = ca.credencial_id and a.id = ca.autorizacoes_id) as t2 ON t1.credencial = t2.credencial WHERE t1.username = ?;"></property>
 	</bean>
 	
-	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<constructor-arg name="strength" value="4"></constructor-arg></bean>
 </beans>
