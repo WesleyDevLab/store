@@ -36,4 +36,7 @@
 	
 	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 		<constructor-arg name="strength" value="4"></constructor-arg></bean>
+	<bean id="expressionHandler" class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+		<property name="permissionEvaluator" ref="permissionEvaluator"></property></bean>
+	<bean id="permissionEvaluator" class="org.kleber.MyPermissionEvaluator"></bean>
 </beans>
