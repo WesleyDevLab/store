@@ -44,16 +44,16 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a th:href="@{/admin}"><span th:utext="#{overview}"></span> <span class="sr-only">(current)</span></a></li>
-            <li><a th:href="@{/categoria}" th:utext="#{categoria}"></a></li>
-            <li><a th:href="@{/produto}" th:utext="#{produto}"></a></li>
-            <li><a th:href="@{/pagina}" th:utext="#{pagina}"></a></li>
+            <li sec:authorize="hasPermission(#user, 'categoria')"><a th:href="@{/categoria}" th:utext="#{categoria}"></a></li>
+            <li sec:authorize="hasPermission(#user, 'produto')"><a th:href="@{/produto}" th:utext="#{produto}"></a></li>
+            <li sec:authorize="hasPermission(#user, 'pagina')"><a th:href="@{/pagina}" th:utext="#{pagina}"></a></li>
           </ul>
-          <ul class="nav nav-sidebar">
+          <ul class="nav nav-sidebar" sec:authorize="hasPermission(#user, 'settings')">
             <li><a th:href="@{/geral/get}" th:utext="#{geral}"></a></li>
             <li><a th:href="@{/paypal/get}" th:utext="#{paypal}"></a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a th:href="@{/usuario}" th:utext="#{usuario}"></a></li>
+            <li sec:authorize="hasPermission(#user, 'usuario')"><a th:href="@{/usuario}" th:utext="#{usuario}"></a></li>
           </ul>
         </div>
         
