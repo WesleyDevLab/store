@@ -1,5 +1,6 @@
 package org.kleber.model.credencial;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,16 +26,17 @@ public class Credencial extends Model {
 	
 	@OneToMany(fetch =  FetchType.EAGER)
 	private List<Autorizacao> autorizacoes;
+	
+	@Column
+	private Date expirationDate;
 
 	@Override
 	public Integer getId() {
-		// TODO Auto-generated method stub
 		return id;
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return nome;
 	}
 
@@ -56,6 +58,14 @@ public class Credencial extends Model {
 
 	public void setAutorizacoes(List<Autorizacao> autorizacoes) {
 		this.autorizacoes = autorizacoes;
+	}
+
+	public Date getExpirationDate() {
+		return expirationDate;
+	}
+
+	public void setExpirationDate(Date expirationDate) {
+		this.expirationDate = expirationDate;
 	}
 
 }
