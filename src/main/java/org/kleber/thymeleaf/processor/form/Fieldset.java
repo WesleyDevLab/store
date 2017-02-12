@@ -1,49 +1,33 @@
 package org.kleber.thymeleaf.processor.form;
 
-import java.util.Map;
+import java.lang.reflect.Field;
 
 import org.thymeleaf.Arguments;
-import org.thymeleaf.dom.Attribute;
 import org.thymeleaf.dom.Element;
-import org.thymeleaf.processor.element.AbstractIterationElementProcessor;
+import org.thymeleaf.processor.element.AbstractConditionalVisibilityElementProcessor;
 
-public class Fieldset extends AbstractIterationElementProcessor {
+public class Fieldset extends AbstractConditionalVisibilityElementProcessor {
 
 	public Fieldset() {
 		super("fieldset");
 	}
 
 	@Override
-	public String getIteratedElementName(Arguments arguments, Element element) {
-		return "fieldset";
+	public boolean isVisible(Arguments arguments, Element element) {
+		Field field = (Field) arguments.getLocalVariable("field");
+		String type = element.getAttributeValue("type");
+		if(type.equals(field.getName()))
+			return true;
+		return false;
 	}
 
 	@Override
-	public IterationSpec getIterationSpec(Arguments arguments, Element element) {
-		Object command = arguments.getContext().getVariables().get("command");
-		if(command == null)
-			command = arguments.getContext().getVariables().get("setting");
-		return new IterationSpec("field", "status", command.getClass().getDeclaredFields());
-	}
-
-	@Override
-	public void processClonedHostIterationElement(Arguments arguments, Element element) {
-		Element fieldset = new Element("field-box");
-		for( Map.Entry<String, Attribute> entry : element.getAttributeMap().entrySet() )
-			fieldset.setAttribute(entry.getKey(), entry.getValue().getValue());
-		fieldset.setProcessable(false);
-		element.getParent().insertBefore(element, fieldset);
-		element.getParent().removeChild(element);
-	}
-
-	@Override
-	public boolean removeHostIterationElement(Arguments arguments, Element element) {
-		return true;
+	public boolean removeHostElementIfVisible(Arguments arguments, Element element) {
+		return false;
 	}
 
 	@Override
 	public int getPrecedence() {
 		return 0;
 	}
-
 }
