@@ -20,7 +20,8 @@
 	<security:http use-expressions="true">
 		<security:form-login login-page="/signin"
 			login-processing-url="/login" username-parameter="login"
-			password-parameter="senha" />
+			password-parameter="senha" default-target-url="/"
+			always-use-default-target="true" />
 		<security:logout logout-url="/logout"
 			delete-cookies='JSESSIONID' logout-success-url="/" />
 		<security:remember-me key="remember-me"
