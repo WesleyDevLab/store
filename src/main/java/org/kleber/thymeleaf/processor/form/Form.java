@@ -1,37 +1,51 @@
 package org.kleber.thymeleaf.processor.form;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.thymeleaf.Arguments;
 import org.thymeleaf.dom.Attribute;
 import org.thymeleaf.dom.Element;
-import org.thymeleaf.processor.ProcessorResult;
-import org.thymeleaf.processor.element.AbstractElementProcessor;
+import org.thymeleaf.dom.Node;
+import org.thymeleaf.processor.element.AbstractFragmentHandlingElementProcessor;
 
-public class Form extends AbstractElementProcessor {
+public class Form extends AbstractFragmentHandlingElementProcessor {
 
 	public Form() {
 		super("form");
 	}
 
 	@Override
-	public ProcessorResult processElement(Arguments arguments, Element element) {
+	public List<Node> computeFragment(Arguments arguments, Element element) {
 		Object command = arguments.getContext().getVariables().get("command");
 		if(command == null)
 			command = arguments.getContext().getVariables().get("setting");
 		
-		if(command != null) {
-			Element form = new Element("form");
-			for( Map.Entry<String, Attribute> entry : element.getAttributeMap().entrySet() )
-				form.setAttribute(entry.getKey(), entry.getValue().getValue());
-			form.setAttribute("method", "post");
-			form.setAttribute("action", null);
-			form.setProcessable(false);
-			element.getParent().insertBefore(element, form);
-			element.getParent().removeChild(element);
+		Element form = new Element("form");
+		for( Map.Entry<String, Attribute> entry : element.getAttributeMap().entrySet() )
+			form.setAttribute(entry.getKey(), entry.getValue().getValue());
+		
+		List<Node> list = new ArrayList<Node>();
+		for(Field field : command.getClass().getDeclaredFields()) {
+			for(Node node : element.getChildren()) {
+				Node temp = node.cloneNode(null, true);
+				temp.setNodeLocalVariable("field", field);
+				list.add(temp);
+			}
 		}
 		
-		return ProcessorResult.OK;
+		form.setProcessable(false);
+		element.getParent().insertBefore(element, form);
+		element.getParent().removeChild(element);
+		
+		return list;
+	}
+
+	@Override
+	public boolean getRemoveHostNode(Arguments arguments, Element element) {
+		return false;
 	}
 
 	@Override
