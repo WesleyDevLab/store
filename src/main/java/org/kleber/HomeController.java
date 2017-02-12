@@ -6,7 +6,6 @@ import java.util.List;
 import org.kleber.model.categoria.CategoriaService;
 import org.kleber.model.pagina.PaginaService;
 import org.kleber.model.produto.ProdutoService;
-import org.kleber.model.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
@@ -27,9 +26,6 @@ public class HomeController {
 	
 	@Autowired
 	private PaginaService pagina;
-	
-	@Autowired
-	private UsuarioService usuario;
 	
 	@RequestMapping("/")
 	public String index() {
@@ -55,6 +51,7 @@ public class HomeController {
 	@RequestMapping("/c/{id}")
 	public String categoria(Model model, @PathVariable("id") String id) {
 		model.addAttribute("categoria", categoria.getObject(id));
+		model.addAttribute("produtos", produto.select(null, null));
 		return "categoria";
 	}
 	
@@ -66,7 +63,7 @@ public class HomeController {
 	
 	@RequestMapping("/page/{titulo}")
 	public String pagina(Model model, @PathVariable("titulo") String titulo) {
-		model.addAttribute("pagina", null);
+		model.addAttribute("pagina", pagina.getObject("titulo", titulo));
 		return "pagina";
 	}
 	
@@ -80,7 +77,7 @@ public class HomeController {
 		return "wishlist";
 	}
 	
-	@RequestMapping("/order")
+	@RequestMapping("/orders")
 	public String order() {
 		return "order";
 	}
