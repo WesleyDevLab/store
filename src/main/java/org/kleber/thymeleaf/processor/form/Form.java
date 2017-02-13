@@ -1,13 +1,6 @@
 package org.kleber.thymeleaf.processor.form;
 
-import org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor;
-import org.thymeleaf.templatemode.TemplateMode;
-
-public class Form extends AbstractStandardFragmentInsertionTagProcessor {
-
-	public Form() {
-		super(TemplateMode.HTML, null, "form", 0, true);
-	}
+public class Form {
 
 	/*public Form() {
 		super("form");

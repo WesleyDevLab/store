@@ -1,21 +1,6 @@
 package org.kleber.thymeleaf.processor.form;
 
-import org.thymeleaf.context.ITemplateContext;
-import org.thymeleaf.engine.AttributeName;
-import org.thymeleaf.model.IProcessableElementTag;
-import org.thymeleaf.standard.processor.AbstractStandardConditionalVisibilityTagProcessor;
-import org.thymeleaf.templatemode.TemplateMode;
-
-public class Fieldset extends AbstractStandardConditionalVisibilityTagProcessor {
-
-	public Fieldset() {
-		super(TemplateMode.HTML, null, "fieldset", 0);
-	}
-
-	@Override
-	public boolean isVisible(ITemplateContext arg0, IProcessableElementTag arg1, AttributeName arg2, String arg3) {
-		return false;
-	}
+public class Fieldset {
 
 	/*public Fieldset() {
 		super("fieldset");
