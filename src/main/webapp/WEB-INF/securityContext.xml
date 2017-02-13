@@ -17,7 +17,7 @@
 	<security:http pattern="/p/**" security="none"></security:http>
 	<security:http pattern="/page/**" security="none"></security:http>
 
-	<security:http use-expressions="true">
+	<security:http use-expressions="true" auto-config="true">
 		<security:form-login login-page="/signin"
 			login-processing-url="/login" username-parameter="login"
 			password-parameter="senha" default-target-url="/"
@@ -25,8 +25,9 @@
 		<security:logout logout-url="/logout"
 			delete-cookies='JSESSIONID' logout-success-url="/" />
 		<security:remember-me key="remember-me"
-			remember-me-parameter="remember-me" remember-me-cookie="remember-me" /><security:csrf
-			disabled="true" />
+			remember-me-parameter="remember-me" remember-me-cookie="remember-me" />
+		<security:csrf disabled="true" /><security:intercept-url
+			pattern="/**" requires-channel="https" />
 	</security:http>
 
 	<security:authentication-manager>
