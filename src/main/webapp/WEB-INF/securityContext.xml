@@ -26,8 +26,7 @@
 			delete-cookies='JSESSIONID' logout-success-url="/" />
 		<security:remember-me key="remember-me"
 			remember-me-parameter="remember-me" remember-me-cookie="remember-me" />
-		<security:csrf disabled="true" /><security:intercept-url
-			pattern="/**" requires-channel="https" />
+		<security:csrf disabled="true" />
 	</security:http>
 
 	<security:authentication-manager>
