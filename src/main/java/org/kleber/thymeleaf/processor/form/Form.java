@@ -1,19 +1,15 @@
 package org.kleber.thymeleaf.processor.form;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import org.thymeleaf.standard.processor.AbstractStandardFragmentInsertionTagProcessor;
+import org.thymeleaf.templatemode.TemplateMode;
 
-import org.thymeleaf.Arguments;
-import org.thymeleaf.dom.Attribute;
-import org.thymeleaf.dom.Element;
-import org.thymeleaf.dom.Node;
-import org.thymeleaf.processor.element.AbstractFragmentHandlingElementProcessor;
-
-public class Form extends AbstractFragmentHandlingElementProcessor {
+public class Form extends AbstractStandardFragmentInsertionTagProcessor {
 
 	public Form() {
+		super(TemplateMode.HTML, null, "form", 0, true);
+	}
+
+	/*public Form() {
 		super("form");
 	}
 
@@ -51,6 +47,6 @@ public class Form extends AbstractFragmentHandlingElementProcessor {
 	@Override
 	public int getPrecedence() {
 		return 0;
-	}
+	}*/
 
 }

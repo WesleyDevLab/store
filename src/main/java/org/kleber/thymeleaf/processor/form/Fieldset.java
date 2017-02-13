@@ -1,14 +1,23 @@
 package org.kleber.thymeleaf.processor.form;
 
-import java.lang.reflect.Field;
+import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.engine.AttributeName;
+import org.thymeleaf.model.IProcessableElementTag;
+import org.thymeleaf.standard.processor.AbstractStandardConditionalVisibilityTagProcessor;
+import org.thymeleaf.templatemode.TemplateMode;
 
-import org.thymeleaf.Arguments;
-import org.thymeleaf.dom.Element;
-import org.thymeleaf.processor.element.AbstractConditionalVisibilityElementProcessor;
-
-public class Fieldset extends AbstractConditionalVisibilityElementProcessor {
+public class Fieldset extends AbstractStandardConditionalVisibilityTagProcessor {
 
 	public Fieldset() {
+		super(TemplateMode.HTML, null, "fieldset", 0);
+	}
+
+	@Override
+	public boolean isVisible(ITemplateContext arg0, IProcessableElementTag arg1, AttributeName arg2, String arg3) {
+		return false;
+	}
+
+	/*public Fieldset() {
 		super("fieldset");
 	}
 
@@ -29,5 +38,5 @@ public class Fieldset extends AbstractConditionalVisibilityElementProcessor {
 	@Override
 	public int getPrecedence() {
 		return 0;
-	}
+	}*/
 }
