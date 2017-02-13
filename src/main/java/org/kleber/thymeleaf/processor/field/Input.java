@@ -1,16 +1,25 @@
 package org.kleber.thymeleaf.processor.field;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.util.Map;
+import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.model.IModel;
+import org.thymeleaf.processor.element.AbstractElementModelProcessor;
+import org.thymeleaf.processor.element.IElementModelStructureHandler;
+import org.thymeleaf.templatemode.TemplateMode;
 
-import org.thymeleaf.Arguments;
-import org.thymeleaf.dom.Attribute;
-import org.thymeleaf.dom.Element;
-import org.thymeleaf.processor.ProcessorResult;
-import org.thymeleaf.processor.element.AbstractElementProcessor;
+public class Input extends AbstractElementModelProcessor {
 
-public class Input extends AbstractElementProcessor {
+	public Input() {
+		super(TemplateMode.HTML, null, "input", false, null, false, 0);
+	}
+
+	@Override
+	public void doProcess(ITemplateContext arg0, IModel arg1, IElementModelStructureHandler arg2) {
+		// TODO Auto-generated method stub
+	}
+
+}
+
+/*public class Input extends AbstractElementProcessor {
 
 	public Input() {
 		super("input");
@@ -55,4 +64,4 @@ public class Input extends AbstractElementProcessor {
 		return annotation_name;
 	}
 
-}
+}*/

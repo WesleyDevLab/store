@@ -13,6 +13,10 @@ import org.thymeleaf.processor.IProcessor;
 
 public class Field extends AbstractDialect {
 
+	public Field() {
+		super("field");
+	}
+
 	public String getPrefix() {
 		return null;
 	}
