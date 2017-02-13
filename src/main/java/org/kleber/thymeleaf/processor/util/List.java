@@ -1,12 +1,23 @@
 package org.kleber.thymeleaf.processor.util;
 
-import org.thymeleaf.Arguments;
-import org.thymeleaf.dom.Element;
-import org.thymeleaf.processor.element.AbstractIterationElementProcessor;
+import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.model.IProcessableElementTag;
+import org.thymeleaf.processor.element.AbstractElementTagProcessor;
+import org.thymeleaf.processor.element.IElementTagStructureHandler;
+import org.thymeleaf.templatemode.TemplateMode;
 
-public class List extends AbstractIterationElementProcessor {
+public class List extends AbstractElementTagProcessor {
 
 	public List() {
+		super(TemplateMode.HTML, null, "list", false, null, false, 0);
+	}
+
+	@Override
+	public void doProcess(ITemplateContext arg0, IProcessableElementTag arg1, IElementTagStructureHandler arg2) {
+		//
+	}
+
+	/*public List() {
 		super("list");
 	}
 
@@ -50,6 +61,6 @@ public class List extends AbstractIterationElementProcessor {
 	
 	public List getList(String item) {
 		return null;
-	}
+	}*/
 
 }

@@ -8,6 +8,10 @@ import org.thymeleaf.processor.IProcessor;
 
 public class Util extends AbstractDialect {
 
+	protected Util() {
+		super("util");
+	}
+
 	public String getPrefix() {
 		return null;
 	}
