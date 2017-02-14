@@ -9,13 +9,13 @@ import org.thymeleaf.processor.IProcessor;
 public class Form extends AbstractDialect {
 
 	public String getPrefix() {
-		return null;
+		return "form";
 	}
 	
 	public Set<IProcessor> getProcessors() {
 		Set<IProcessor> processors = new HashSet<IProcessor>();
-		//processors.add(new org.kleber.thymeleaf.processor.form.Form());
-		//processors.add(new org.kleber.thymeleaf.processor.form.Fieldset());
+		processors.add(new org.kleber.thymeleaf.processor.form.Form());
+		processors.add(new org.kleber.thymeleaf.processor.form.Fieldset());
 		return processors;
 	}
 

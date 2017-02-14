@@ -1,8 +1,14 @@
 package org.kleber.thymeleaf.processor.form;
 
-public class Fieldset {
+import java.lang.reflect.Field;
 
-	/*public Fieldset() {
+import org.thymeleaf.Arguments;
+import org.thymeleaf.dom.Element;
+import org.thymeleaf.processor.element.AbstractConditionalVisibilityElementProcessor;
+
+public class Fieldset extends AbstractConditionalVisibilityElementProcessor {
+
+	public Fieldset() {
 		super("fieldset");
 	}
 
@@ -10,8 +16,10 @@ public class Fieldset {
 	public boolean isVisible(Arguments arguments, Element element) {
 		Field field = (Field) arguments.getLocalVariable("field");
 		String type = element.getAttributeValue("type");
-		if(type.equals(field.getName()))
+		if(type.equals(field.getName())) {
+			element.removeAttribute("type");
 			return true;
+		}
 		return false;
 	}
 
@@ -23,5 +31,6 @@ public class Fieldset {
 	@Override
 	public int getPrecedence() {
 		return 0;
-	}*/
+	}
+	
 }
