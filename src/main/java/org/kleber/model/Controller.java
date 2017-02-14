@@ -74,9 +74,9 @@ public abstract class Controller<E> {
 	
 	//index page
 	
-	@RequestMapping("/")
+	@RequestMapping("/index")
 	public String index(org.springframework.ui.Model model) {
-		model.addAttribute("list", serv.select(null, null));
+		model.addAttribute("list", clazz);
 		return "admin";
 	}
 	
