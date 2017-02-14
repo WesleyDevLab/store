@@ -30,10 +30,10 @@
 		<property name="templateResolver" ref="templateResolver"></property>
 		<property name="additionalDialects">
 			<set>
-				<bean class="org.kleber.thymeleaf.dialect.Field"/>
-				<bean class="org.kleber.thymeleaf.dialect.Form"/>
-				<bean class="org.kleber.thymeleaf.dialect.Util"/>
-				<bean class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect"/>
+				<bean id="FieldDialect" class="org.kleber.thymeleaf.dialect.Field"></bean>
+				<bean id="FormDialect" class="org.kleber.thymeleaf.dialect.Form"></bean>
+				<bean id="UtilDialect" class="org.kleber.thymeleaf.dialect.Util"></bean>
+				<bean id="SecurityDialect" class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect"></bean>
 			</set>
 		</property>
 	</bean>

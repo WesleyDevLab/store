@@ -32,10 +32,6 @@
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-		<init-param>
-			<param-name>org.springframework.web.context.WebApplicationContext.ROOT</param-name>
-			<param-value>param-value</param-value>
-		</init-param>
 	</filter>
 	
 	<filter-mapping>
