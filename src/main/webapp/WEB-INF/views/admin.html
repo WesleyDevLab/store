@@ -176,9 +176,13 @@
 	
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
     
-    <script th:src="@{/js/script-admin.js}"></script>
+    <script th:if="${list}">
+    $(document).ready(function(){
+    	//TODO
+    });
+    </script>
     
-    <script>
+    <script th:if="${command}">
     $(document).ready(function() {
     	  $('.summernote').each({
     		  $(this).summernote();
