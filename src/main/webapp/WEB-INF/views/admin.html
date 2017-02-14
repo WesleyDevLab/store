@@ -73,18 +73,12 @@
 			    <thead>
 			    	<tr>
 			    		<th></th>
-			    		<th th:each="item : ${list.declaredFields}" th:utext="#{__${item.name}__}"></th>
+			    		<th class="col" th:each="item : ${list.declaredFields}" th:utext="#{__${item.name}__}"></th>
 			    		<th></th>
 			    	</tr>
 			    </thead>
 			    
-			    <tbody>
-			    	<tr>
-			    		<td></td>
-			    		<td th:each="item : ${list.declaredFields}"></td>
-			    		<td></td>
-			    	</tr>
-			    </tbody>
+			    <tbody></tbody>
 			    
 			    <tfoot>
 			    	<tr>
@@ -176,10 +170,33 @@
 	
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
     
-    <script th:if="${list}">
+    <script th:if="${list}" th:inline="javascript">
+    /*<![CDATA[*/
     $(document).ready(function(){
-    	//TODO
+    	load_content(/*[[@{/__${#strings.toLowerCase(list.simpleName)}__/list.json}]]*/, $('table.table'));
+    	
+    	function load_content(lista, target) {
+    		var atributos = [];
+    		$(".col").each(function(){
+    			var item = $(this).text();
+    			atributos.push(item);
+    		});
+    		$.get(lista, function(json_string){
+    			var json = jQuery.parseJSON( json_string );
+    			$.each(json, function(index, item){
+    				var row = $('<tr>');
+    				row.append('<td></td>');
+    				for(var i=0; i<atributos.length; i++) {
+    					var token = item[atributos[i]];
+    					row.append('<td>'+token+'</td>');
+    				}
+    				row.append('<td></td>');
+    				target.find("tbody").append(row);
+    			});
+    		});
+    	}
     });
+    /*]]>*/
     </script>
     
     <script th:if="${command}">
