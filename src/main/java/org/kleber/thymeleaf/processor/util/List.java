@@ -1,8 +1,12 @@
 package org.kleber.thymeleaf.processor.util;
 
-public class List {
+import org.thymeleaf.Arguments;
+import org.thymeleaf.dom.Element;
+import org.thymeleaf.processor.element.AbstractIterationElementProcessor;
 
-	/*public List() {
+public class List extends AbstractIterationElementProcessor {
+
+	public List() {
 		super("list");
 	}
 
@@ -46,6 +50,6 @@ public class List {
 	
 	public List getList(String item) {
 		return null;
-	}*/
+	}
 
 }
