@@ -1,10 +1,16 @@
 package org.kleber.thymeleaf.processor.field;
 
-public class Input {
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.util.Map;
 
-}
+import org.thymeleaf.Arguments;
+import org.thymeleaf.dom.Attribute;
+import org.thymeleaf.dom.Element;
+import org.thymeleaf.processor.ProcessorResult;
+import org.thymeleaf.processor.element.AbstractElementProcessor;
 
-/*public class Input extends AbstractElementProcessor {
+public class Input extends AbstractElementProcessor {
 
 	public Input() {
 		super("input");
@@ -49,4 +55,4 @@ public class Input {
 		return annotation_name;
 	}
 
-}*/
+}
