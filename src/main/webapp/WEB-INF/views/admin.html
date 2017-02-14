@@ -41,18 +41,19 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
+          
           <ul class="nav nav-sidebar">
-            <li class="active"><a th:href="@{/admin}"><span th:utext="#{overview}"></span> <span class="sr-only">(current)</span></a></li>
-            <li sec:authorize="hasPermission(#user, 'categoria')"><a th:href="@{/categoria}" th:utext="#{categoria}"></a></li>
-            <li sec:authorize="hasPermission(#user, 'produto')"><a th:href="@{/produto}" th:utext="#{produto}"></a></li>
-            <li sec:authorize="hasPermission(#user, 'pagina')"><a th:href="@{/pagina}" th:utext="#{pagina}"></a></li>
+            <li th:class="${list == null and setting == null}? 'active' : 'null'"><a th:href="@{/admin}"><span th:utext="#{overview}"></span> <span class="sr-only">(current)</span></a></li>
+            <li th:class="${list != null and #strings.equals(list.simpleName, 'Categoria')? 'active' : 'null'}" sec:authorize="hasPermission(#user, 'categoria')"><a th:href="@{/categoria/index}" th:utext="#{categoria}"></a></li>
+            <li th:class="${list != null and #strings.equals(list.simpleName, 'Produto')? 'active' : 'null'}" sec:authorize="hasPermission(#user, 'produto')"><a th:href="@{/produto/index}" th:utext="#{produto}"></a></li>
+            <li th:class="${list != null and #strings.equals(list.simpleName, 'Pagina')? 'active' : 'null'}" sec:authorize="hasPermission(#user, 'pagina')"><a th:href="@{/pagina/index}" th:utext="#{pagina}"></a></li>
           </ul>
           <ul class="nav nav-sidebar" sec:authorize="hasPermission(#user, 'settings')">
-            <li><a th:href="@{/geral/get}" th:utext="#{geral}"></a></li>
-            <li><a th:href="@{/paypal/get}" th:utext="#{paypal}"></a></li>
+            <li th:class="${setting != null and #strings.equals(setting['class'].simpleName, 'Geral')? 'active' : 'null'}"><a th:href="@{/geral/get}" th:utext="#{geral}"></a></li>
+            <li th:class="${setting != null and #strings.equals(setting['class'].simpleName, 'Paypal')? 'active' : 'null'}"><a th:href="@{/paypal/get}" th:utext="#{paypal}"></a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li sec:authorize="hasPermission(#user, 'usuario')"><a th:href="@{/usuario}" th:utext="#{usuario}"></a></li>
+            <li th:class="${list != null and #strings.equals(list.simpleName, 'Usuario')? 'active' : 'null'}" sec:authorize="hasPermission(#user, 'usuario')"><a th:href="@{/usuario/index}" th:utext="#{usuario}"></a></li>
           </ul>
         </div>
         
@@ -62,21 +63,25 @@
 			</div>
         </div>
         
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:if="${list}">		
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:if="${list}">
+        	<div class="page-header">
+			  <h1 th:utext="#{__${list.simpleName}__}"></h1>
+			</div>
+			
 			<div class="table-responsive">
 			  <table class="table table-bordered table-striped">
 			    <thead>
 			    	<tr>
-			    		<td></td>
-			    		<td></td>
-			    		<td></td>
+			    		<th></th>
+			    		<th th:each="item : ${list.declaredFields}" th:utext="#{__${item.name}__}"></th>
+			    		<th></th>
 			    	</tr>
 			    </thead>
 			    
 			    <tbody>
 			    	<tr>
 			    		<td></td>
-			    		<td></td>
+			    		<td th:each="item : ${list.declaredFields}"></td>
 			    		<td></td>
 			    	</tr>
 			    </tbody>
@@ -84,7 +89,7 @@
 			    <tfoot>
 			    	<tr>
 			    		<td></td>
-			    		<td></td>
+			    		<td th:each="item : ${list.declaredFields}" th:utext="#{__${item.name}__}"></td>
 			    		<td></td>
 			    	</tr>
 			    </tfoot>
@@ -115,7 +120,7 @@
 	       		</fieldset>
 	       		
 	       		<fieldset type="Summernote">
-	       			<textarea id="summernote"></textarea>
+	       			<textarea class="summernote"></textarea>
 	       		</fieldset>
 	       	</form>
         </div>
@@ -131,31 +136,31 @@
 			  <!-- Tab panes -->
 			  <div class="tab-content">
 			    <div role="tabpanel" th:each="item : ${settings}" th:class="${#strings.equals(setting['class'].simpleName, item.simpleName)} ? 'tab-pane active' : 'tab-pane'" th:id="${item.simpleName}">
-		        	<form role="form" class="form" id="form">
-		        		<fieldset type="Datalist">
+			       	<form role="form" class="form" id="form">
+			       		<fieldset type="Datalist">
 			        			<label></label>
 			        			<datalist class="form-control"></datalist>
-		        		</fieldset>
+			       		</fieldset>
 			        		
-		        		<fieldset type="Input">
-		        			<label></label>
-		        			<input class="form-control"></input>
-		        		</fieldset>
-		        		
-		        		<fieldset type="Select">
-		        			<label></label>
-		        			<select class="form-control"></select>
-		        		</fieldset>
-		        		
-		        		<fieldset type="Textarea">
-		        			<label></label>
-		        			<textarea class="form-control"></textarea>
-		        		</fieldset>
-		        		
-		        		<fieldset type="Summernote">
-		        			<textarea id="summernote"></textarea>
-		        		</fieldset>
-		        	</form>
+			       		<fieldset type="Input">
+			       			<label></label>
+			       			<input class="form-control"></input>
+			       		</fieldset>
+			       		
+			       		<fieldset type="Select">
+			       			<label></label>
+			       			<select class="form-control"></select>
+			       		</fieldset>
+			       		
+			       		<fieldset type="Textarea">
+			       			<label></label>
+			       			<textarea class="form-control"></textarea>
+			       		</fieldset>
+			       		
+			       		<fieldset type="Summernote">
+			       			<textarea class="summernote"></textarea>
+			       		</fieldset>
+			       	</form>
 			    </div>
 			  </div>
         </div>
@@ -175,7 +180,9 @@
     
     <script>
     $(document).ready(function() {
-    	  $('#summernote').summernote();
+    	  $('.summernote').each({
+    		  $(this).summernote();
+    	  });
     });
     </script>
   </body>
