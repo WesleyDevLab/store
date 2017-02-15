@@ -3,7 +3,6 @@ package org.kleber.model;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,11 +12,7 @@ public abstract class Dao<E> {
 	
 	@Autowired
 	protected SessionFactory sessionFactory;
-	
-	public Session getCurrentSession() {
-		return sessionFactory.getCurrentSession();
-	}
-	
+		
 	public Dao(Class<E> clazz) {
 		this.clazz = clazz;
 	}
@@ -44,7 +39,7 @@ public abstract class Dao<E> {
 	}
 	
 	@Transactional
-	public E select(String id) {
+	public E findById(String id) {
 		E instance = (E) sessionFactory.getCurrentSession().get(clazz, id);
 		return instance;
 	}
