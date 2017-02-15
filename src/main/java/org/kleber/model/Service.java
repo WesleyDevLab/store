@@ -41,7 +41,7 @@ public abstract class Service<E> {
 	
 	@Transactional
 	public E getObject(String id) {
-		return dao.select(id);
+		return dao.findById(id);
 	}
 	
 	@Transactional
