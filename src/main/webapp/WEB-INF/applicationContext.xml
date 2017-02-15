@@ -10,6 +10,14 @@
 	
 	<context:annotation-config/>
 	
+	<mvc:annotation-driven/>
+	
+	<mvc:resources location="/css/" mapping="/css/**" />
+	
+	<mvc:resources location="/img/" mapping="/img/**" />
+	
+	<mvc:resources location="/js/" mapping="/js/**" />
+	
 	<security:global-method-security secured-annotations="enabled" jsr250-annotations="disabled" pre-post-annotations="enabled">
 		<security:expression-handler ref="expressionHandler" /></security:global-method-security>
 
@@ -47,10 +55,4 @@
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="messages"></property>
 	</bean>
-	
-	<mvc:annotation-driven/>
-	
-	<mvc:resources location="/css/" mapping="/css/**" />
-	<mvc:resources location="/img/" mapping="/img/**" />
-	<mvc:resources location="/js/" mapping="/js/**" />
 </beans>
